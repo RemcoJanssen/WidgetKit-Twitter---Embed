@@ -187,7 +187,7 @@ class TwitterWidgetkitHelper extends WidgetkitHelper {
             $decoded_response = json_decode($response, true);
 
             // refresh cache ?
-            if (!file_exists($file) || (time() - filemtime($file)) > 0  || isset($decoded_response['errors'])) {
+            if (!file_exists($file) || (time() - filemtime($file)) > 300  || isset($decoded_response['errors'])) {
 
                 $connection = new WidgetkitTwitterOAuth(@$consumer_key, @$consumer_secret, @$access_token, @$access_token_secret);
 				
@@ -206,7 +206,7 @@ class TwitterWidgetkitHelper extends WidgetkitHelper {
 				
 				$response   = json_encode($request);
 			
-                //file_put_contents($file, $response);
+                file_put_contents($file, $response);
             }
         }
 
